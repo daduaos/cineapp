@@ -32,8 +32,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/detail")
 	public String mostrarDetalle(Model model) {
-		String tituloPelicula = "Rapidos y furiosos";
-		int duracion = 136;
+		String tituloPelicula = "Rapidos y furiososssss";
+		int duracion = 139;
 		double precioEntrada = 50;
 
 		model.addAttribute("titulo", tituloPelicula);
@@ -53,7 +53,7 @@ public class HomeController {
 			pelicula1.setId(1);
 			pelicula1.setTitulo("Power Rangers");
 			pelicula1.setDuracion(120);
-			pelicula1.setClasificacion("B");
+			pelicula1.setClasificacion("D");
 			pelicula1.setGenero("Aventura");
 			pelicula1.setFechaEstreno(formatter.parse("02-05-2017"));
 			// imagen="cinema.png"
@@ -63,7 +63,7 @@ public class HomeController {
 			pelicula2.setId(2);
 			pelicula2.setTitulo("La bella y la bestia");
 			pelicula2.setDuracion(132);
-			pelicula2.setClasificacion("A");
+			pelicula2.setClasificacion("C");
 			pelicula2.setGenero("Infantil");
 			pelicula2.setFechaEstreno(formatter.parse("20-05-2017"));
 			pelicula2.setImagen("bella.png"); // Nombre del archivo de imagen
@@ -72,7 +72,7 @@ public class HomeController {
 			pelicula3.setId(3);
 			pelicula3.setTitulo("Contratiempo");
 			pelicula3.setDuracion(106);
-			pelicula3.setClasificacion("B");
+			pelicula3.setClasificacion("X");
 			pelicula3.setGenero("Thriller");
 			pelicula3.setFechaEstreno(formatter.parse("28-05-2017"));
 			pelicula3.setImagen("contratiempo.png"); // Nombre del archivo de imagen
@@ -87,9 +87,20 @@ public class HomeController {
 			pelicula4.setImagen("kong.png"); // Nombre del archivo de imagen
 			pelicula4.setEstatus("Inactiva"); // Esta pelicula estara inactiva
 			
+			Pelicula pelicula5 = new Pelicula();
+			pelicula5.setId(5);
+			pelicula5.setTitulo("Life: Vida Inteligente");
+			pelicula5.setDuracion(104);
+			pelicula5.setClasificacion("B");
+			pelicula5.setGenero("Drama");
+			pelicula5.setFechaEstreno(formatter.parse("10-06-2017"));
+			pelicula5.setImagen("estreno5.png"); // Nombre del archivo de imagen
+			pelicula5.setEstatus("Activa"); // Esta pelicula estara inactiva
+			
 			// Agregamos los objetos Pelicula a la lista
 			lista.add(pelicula1);
 			lista.add(pelicula2);
+			lista.add(pelicula5);
 			lista.add(pelicula3);
 			lista.add(pelicula4);
 
