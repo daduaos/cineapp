@@ -2,17 +2,23 @@ package net.itinajero.app.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import net.itinajero.app.model.Pelicula;
+import net.itinajero.app.util.Util;
 
 @Controller
 public class HomeController {
 
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String goHome() {
 		return "home";
@@ -20,25 +26,27 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mostrarPrincipal(Model model) {
-
+		
+		List<String> fecha = Util.getNextDays(4);
 		List<Pelicula> peliculas = getLista();
-//		peliculas.add("Rapido y furioso");
-//		peliculas.add("El aro 2");
-//		peliculas.add("Aliens");
 		model.addAttribute("peliculas", peliculas);
-
+		model.addAttribute("fechaBusqueda",dateFormat.format(new Date()));
+		model.addAttribute("fecha",fecha);
 		return "home";
 	}
 
-	@RequestMapping(value = "/detail")
-	public String mostrarDetalle(Model model) {
-		String tituloPelicula = "Rapidos y furiososssss";
-		int duracion = 139;
-		double precioEntrada = 50;
-
-		model.addAttribute("titulo", tituloPelicula);
-		model.addAttribute("duracion", duracion);
-		model.addAttribute("precio", precioEntrada);
+//	@RequestMapping(value = "/detail/{id}/{fechaBusqueda}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String mostrarDetalle(Model model,@RequestParam("idMovie") int id,@RequestParam("fecha") String fecha) {
+		System.out.println("path variable id : "+id);
+		System.out.println("fecha : "+ fecha);
+//		String tituloPelicula = "Rapidos y furiososssss";
+//		int duracion = 139;
+//		double precioEntrada = 50;
+//
+//		model.addAttribute("titulo", tituloPelicula);
+//		model.addAttribute("duracion", duracion);
+//		model.addAttribute("precio", precioEntrada);
 		return "detalle";
 	}
 
