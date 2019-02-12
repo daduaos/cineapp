@@ -8,6 +8,10 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Util {
+	
+	private Util() {
+		//SONAR
+	}
 
 	/**
 	 * Get next days by count
@@ -22,7 +26,7 @@ public class Util {
 		Date dateEnd = cal.getTime();
 		GregorianCalendar gcal = new GregorianCalendar();
 		gcal.setTime(dateStart);
-		List<String> nextDays = new ArrayList<>();
+		List<String> nextDays = new ArrayList();
 		while(!gcal.getTime().after(dateEnd)){
 			Date d = gcal.getTime();
 			gcal.add(Calendar.DATE, 1);

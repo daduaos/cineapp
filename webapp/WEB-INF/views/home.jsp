@@ -13,6 +13,8 @@
 <title>CineSite | Bienvenido</title>
 
 <spring:url value="/resources" var="urlPublic"></spring:url>
+<spring:url value="/" var="urlRoot"></spring:url>
+
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -25,8 +27,7 @@
 
 	<div class="container theme-showcase" role="main">
 
-		<!-- Carousel
-    ================================================== -->
+		<!-- Carousel ================================================== -->
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -71,13 +72,19 @@
 				<h2 class="text text-center">
 					<span class="label label-success">EN CARTELERA</span>
 				</h2>
-				<form class="form-inline" action="#" method="post">
+				<form class="form-inline" action="${ urlRoot }search" method="post">
 					<div class="form-group">
-						<label for="fecha">Fecha: </label> 
-						<select id="fecha" name="fecha"
-							class="form-control">
-							<c:forEach items="${ fecha }" var="fechas" >
-							<option value="${ fechas }">${ fechas }</option>
+						<label for="fecha">Fecha: </label>
+						<select id="fecha" name="fecha"	class="form-control">
+							<c:forEach items="${ fecha }" var="fechas">
+								<c:choose>
+									<c:when test="${fechaBusqueda eq fechas}">
+										<option value="${fechas}" selected>${fechas}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${fechas}">${fechas}</option>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</select>
 					</div>
@@ -102,8 +109,13 @@
 							<span class="label label-default">${ pelicula.duracion }min</span>
 							<span class="label label-default">${ pelicula.genero }</span>
 						</h4>
-<%-- 						<p><a class="btn btn-sm btn-primary" href="detail/${ pelicula.id }/${ fechaBusqueda }" role="button">Consulta Horarios &raquo;</a></p> --%>
-						<p><a class="btn btn-sm btn-primary" href="detail?idMovie=${ pelicula.id }&fecha=${ fechaBusqueda }" role="button">Consulta Horarios &raquo;</a></p>
+						<%-- 						<p><a class="btn btn-sm btn-primary" href="detail/${ pelicula.id }/${ fechaBusqueda }" role="button">Consulta Horarios &raquo;</a></p> --%>
+						<p>
+							<a class="btn btn-sm btn-primary"
+								<%-- 								href="detail?idMovie=${ pelicula.id }&fecha=${ fechaBusqueda }" --%>
+								href="details/${ pelicula.id }/${ fechaBusqueda }"
+								role="button">Consulta Horarios &raquo;</a>
+						</p>
 					</div>
 				</c:forEach>
 			</div>
